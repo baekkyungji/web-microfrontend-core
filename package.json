@@ -1,5 +1,5 @@
 {
-  "name": "edvengers2-web",
+  "name": "@edvengers2/web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,14 +8,41 @@
     "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^4.2.2",
+    "react-app-polyfill": "^0.2.2",
+    "react-app-rewire-micro-frontends": "^0.0.1",
     "react-scripts": "4.0.0",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest-enzyme": "^6.0.2",
+    "jest-fetch-mock": "^2.1.2",
+    "prettier": "^1.13.5",
+    "react-app-rewired": "^2.1.1",
+    "husky": "^4.2.5",
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-native": "^3.8.1"
+  },
+  "config-overrides-path": "node_modules/react-app-rewire-micro-frontends",
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "format": "prettier --write",
+    "start": "PORT=3000 react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +61,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "husky": {
+    "hooks": {
+    }
   }
 }
