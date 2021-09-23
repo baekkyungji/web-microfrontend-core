@@ -17,12 +17,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <React.Fragment>
-          <div>
-            Microfrontend Core Container
-          </div>
           <Switch>
-            <Route exact path="/transaction" component={TransactionMicroFrontend} />
-            <Route exact path="/account" component={AccountMicroFrontend} />
+            <Route exact path="/transactions" component={TransactionMicroFrontend} />
+            <Route exact path="/accounts" component={AccountMicroFrontend} />
           </Switch>
         </React.Fragment>
       </BrowserRouter>

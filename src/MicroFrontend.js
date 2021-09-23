@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 
-class MicroFrontend extends PureComponent {
-  componentDidMount() {
+class MicroFrontend extends Component {
+  async componentDidMount() {
     const { name, host, document } = this.props;
     const scriptId = `micro-frontend-script-${name}`;
 
@@ -10,18 +10,17 @@ class MicroFrontend extends PureComponent {
       return;
     }
 
-    fetch(`${host}/asset-manifest.json`)
-      .then(res => res.json())
-      .then(manifest => {
-        console.log(manifest.files);
-        const files = manifest.files;
-        const script = document.createElement('script');
-        script.id = scriptId;
-        script.crossOrigin = '';
-        script.src = `${host}${files['main.js']}`;
-        script.onload = this.renderMicroFrontend;
-        document.head.appendChild(script);
-      });
+    const fetchedFrontend = await fetch(`${host}/asset-manifest.json`, {
+      mode: 'no-cors',
+    });
+    const frontendInJson = fetchedFrontend.json();
+    const files = frontendInJson.files;
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.crossOrigin = '';
+    script.src = `${host}${files['main.js']}`;
+    script.onload = this.renderMicroFrontend;
+    document.head.appendChild(script);
   }
 
   componentWillUnmount() {
